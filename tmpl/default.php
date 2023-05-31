@@ -2,9 +2,10 @@
 
 defined('_JEXEC') or die;
 
-echo "TEST";
+
 // Access to module parameters
 $file = $params->get('file', '');
+echo "Fil: " .$file;
 
 ob_start();
 include("../../ms-modules/".$file);
