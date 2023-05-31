@@ -30,14 +30,13 @@
                     default="" 
                     label="Select a file" 
                     description="" 
-                    directory="/ms-modules" 
+                    directory="/ms-modules"
                     filter="" 
                     exclude="" 
                     stripext="" 
                 />                       
 			</fieldset>
-			<fieldset
-					name="advanced">
+			<fieldset name="advanced">
 				<field
                     name="moduleclass_sfx"
                     type="text"
