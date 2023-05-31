@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.8" client="site" method="upgrade">
-	<name>MOD_HQPHPMODULE</name>
+	<name>HQPHPMODULE</name>
 	<creationDate>2023-06-01</creationDate>
 	<author>Magnus Hasselquist</author>
 	<authorEmail>magnus.hasselquist@gmail.com</authorEmail>
@@ -18,29 +18,71 @@
 
 	<!-- Update servers -->
 	<updateservers>
-		<server type="extension" priority="1" name="MOD_HQPHPMODULE">https://github.com/magnushasselquist/hqphpmodule/mod_hqphpmodule.xml</server>
+		<server type="extension" priority="1" name="MOD_HQPHPMODULE">https://raw.githubusercontent.com/magnushasselquist/hqphpmodule/main/hqphpmodule_update.xml</server>
 	</updateservers>
 
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field
-					name="domain"
-					type="url"
-					label="MOD_FOO_URL_LABEL"
-					description="MOD_FOO_URL_DESCRIPTION"
-					hint="https://www.example.com"
-					filter="url"
-					validate="url"
-				/>
+                <field 
+                    name="file" 
+                    type="filelist" 
+                    default="" 
+                    label="Select a file" 
+                    description="" 
+                    directory="/ms-modules" 
+                    filter="" 
+                    exclude="" 
+                    stripext="" 
+                />                       
 			</fieldset>
 			<fieldset
 					name="advanced">
 				<field
-						name="moduleclass_sfx"
-						type="text"
-						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
-						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+                    name="moduleclass_sfx"
+                    type="text"
+                    label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                    description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" 
+                />
+
+                <field
+                    name="layout"
+                    type="modulelayout"
+                    label="JFIELD_ALT_LAYOUT_LABEL"
+                    class="custom-select"
+                />
+
+                <field
+                    name="moduleclass_sfx"
+                    type="textarea"
+                    label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                    rows="3"
+                />
+
+                <field
+                    name="cache"
+                    type="list"
+                    label="COM_MODULES_FIELD_CACHING_LABEL"
+                    default="0"
+                >
+                    <option value="1">JGLOBAL_USE_GLOBAL</option>
+                    <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+                </field>
+
+                <field
+                    name="cache_time"
+                    type="number"
+                    label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+                    default="0"
+                />
+
+                <field
+                    name="cachemode"
+                    type="hidden"
+                    default="itemid"
+                >
+                    <option value="itemid"></option>
+                </field>                        
 			</fieldset>
 		</fields>
 	</config>

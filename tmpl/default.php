@@ -3,9 +3,12 @@
 defined('_JEXEC') or die;
 
 // Access to module parameters
-$domain = $params->get('domain', 'https://www.joomla.org');
-?>
+$code = $params->get('file', '');
 
-<a href="<?php echo $domain; ?>">
-	<?php echo '[PROJECT_NAME]'; ?>
-</a>
+ob_start();
+include($file);
+$page = ob_get_clean();
+
+echo $page;
+
+?>
