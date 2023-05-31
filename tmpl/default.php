@@ -8,6 +8,7 @@ $file = $params->get('file', '');
 
 ob_start();
 include("/var/www/scout/ms-modules/".$file);
+// TODO: Relative PATH instead
 $page = ob_get_clean();
 
 echo $page;
