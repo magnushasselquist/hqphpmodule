@@ -6,7 +6,7 @@ defined('_JEXEC') or die;
 $code = $params->get('file', '');
 
 ob_start();
-include($file);
+include("/ms-modules/".$file);
 $page = ob_get_clean();
 
 echo $page;
