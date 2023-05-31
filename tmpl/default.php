@@ -8,7 +8,7 @@ $file = $params->get('file', '');
 echo "Fil: " .$file;
 
 ob_start();
-include("../../ms-modules/".$file);
+include("/var/www/scout/ms-modules/".$file);
 $page = ob_get_clean();
 
 echo $page;
