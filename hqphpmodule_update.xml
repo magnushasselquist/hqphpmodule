@@ -5,8 +5,9 @@
         <description>HQPHPMODULE</description>
         <element>mod_hqphpmodule</element>
         <type>module</type>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
         <infourl title="HQPHPMODULE">https://github.com/magnushasselquist/hqphpmodule</infourl>
+        <php_minimum>8.1</php_minimum>
         <downloads>
             <downloadurl type="full" format="zip">https://github.com/magnushasselquist/hqphpmodule/archive/refs/heads/main.zip</downloadurl>
         </downloads>

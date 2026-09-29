@@ -1,6 +1,24 @@
 # hqphpmodule
 HQ PHP Module for Joomla
 
+Renders the output of a PHP file from the `ms-modules` directory below the
+site root. The file is picked per module instance in the module settings.
+
+## Requirements
+
+| Component | Supported                                   |
+|-----------|---------------------------------------------|
+| Joomla    | 4.x, 5.x, 6.x                               |
+| PHP       | 8.1 or newer. Linted against PHP 8.4 and 8.5 |
+
+Only files directly inside `<site root>/ms-modules` with a `.php` extension
+can be selected and included. Sub directories, symlinks pointing outside the
+directory and path traversal in the stored parameter are rejected.
+
+Anyone who can edit this module in the Joomla backend can run any PHP file in
+that directory, so treat `ms-modules` like code and keep write access to it
+limited to deployers.
+
 ## Update server
 
 The module manifest points Joomla's update system at:
