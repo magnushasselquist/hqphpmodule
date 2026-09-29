@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.8" client="site" method="upgrade">
+<extension type="module" version="4.0" client="site" method="upgrade">
 	<name>HQPHPMODULE</name>
 	<creationDate>2023-06-01</creationDate>
 	<author>Magnus Hasselquist</author>
@@ -7,7 +7,7 @@
 	<authorUrl>https://github.com/magnushasselquist</authorUrl>
 	<copyright>Copyright 2023</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-	<version>1.0</version>
+	<version>1.0.2</version>
 	<description>HQ PHP MODULE</description>
 
 	<files>
@@ -24,37 +24,36 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-                <field 
-                    name="file" 
-                    type="filelist" 
-                    default="" 
-                    label="Select a file" 
-                    description="" 
-                    directory="/ms-modules"
-                    filter="" 
-                    exclude="" 
-                    stripext="" 
-                />                       
+                <!--
+                    Lists the .php files in <site root>/ms-modules. The same
+                    directory is hard-wired in mod_hqphpmodule.php; keep them in sync.
+                -->
+                <field
+                    name="file"
+                    type="filelist"
+                    default=""
+                    label="Select a file"
+                    description="PHP file in the ms-modules directory below the site root whose output this module renders."
+                    directory="ms-modules"
+                    filter="\.php$"
+                    exclude=""
+                    stripext="false"
+                    hide_default="true"
+                />
 			</fieldset>
 			<fieldset name="advanced">
-				<field
-                    name="moduleclass_sfx"
-                    type="text"
-                    label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
-                    description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" 
-                />
-
                 <field
                     name="layout"
                     type="modulelayout"
                     label="JFIELD_ALT_LAYOUT_LABEL"
-                    class="custom-select"
+                    class="form-select"
                 />
 
                 <field
                     name="moduleclass_sfx"
                     type="textarea"
                     label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                    description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
                     rows="3"
                 />
 
