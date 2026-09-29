@@ -3,11 +3,17 @@
 /**
  * Default layout for HQ PHP Module.
  *
- * Variables available from mod_hqphpmodule.php:
+ * Variables provided by the dispatcher:
  *
- * @var string $filePath        Absolute, validated path to the PHP file to render, or '' if none.
- * @var string $moduleclass_sfx Escaped module class suffix.
- * @var object $module          The module record (title etc.).
+ * @var string                                   $filePath  Absolute, validated path to the PHP file to render, or '' if none.
+ * @var bool                                     $canEdit   Whether the current user may edit modules.
+ * @var \stdClass                                $module    The module record (title etc.).
+ * @var \Joomla\CMS\Application\CMSApplication   $app       The application.
+ * @var \Joomla\Input\Input                      $input     The request input.
+ * @var \Joomla\Registry\Registry                $params    The module parameters.
+ * @var string                                   $template  The active template name.
+ *
+ * The included file sees the same variables.
  *
  * @copyright  Copyright 2023 Magnus Hasselquist
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
@@ -15,17 +21,15 @@
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 if ($filePath === '') {
     // Visitors get no output. Users who may edit modules get a hint so a
     // missing or misconfigured file does not fail silently.
-    $user = Factory::getApplication()->getIdentity();
-
-    if ($user !== null && $user->authorise('core.edit', 'com_modules')) {
-        echo '<div class="alert alert-warning">HQPHPMODULE: no valid PHP file selected for module "'
-            . htmlspecialchars((string) $module->title, ENT_QUOTES, 'UTF-8')
-            . '". Pick a .php file from the ms-modules directory in the module settings.</div>';
+    if ($canEdit) {
+        echo '<div class="alert alert-warning">'
+            . Text::sprintf('MOD_HQPHPMODULE_NO_FILE', htmlspecialchars((string) $module->title, ENT_QUOTES, 'UTF-8'))
+            . '</div>';
     }
 
     return;

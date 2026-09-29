@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="4.0" client="site" method="upgrade">
-	<name>HQPHPMODULE</name>
+<extension type="module" client="site" method="upgrade">
+	<name>MOD_HQPHPMODULE</name>
 	<creationDate>2023-06-01</creationDate>
 	<author>Magnus Hasselquist</author>
 	<authorEmail>magnus.hasselquist@gmail.com</authorEmail>
 	<authorUrl>https://github.com/magnushasselquist</authorUrl>
-	<copyright>Copyright 2023</copyright>
+	<copyright>Copyright 2023 Magnus Hasselquist</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-	<version>1.0.2</version>
-	<description>HQ PHP MODULE</description>
+	<version>1.1.0</version>
+	<description>MOD_HQPHPMODULE_XML_DESCRIPTION</description>
+
+	<!-- PSR-4 root for the classes in src/. Joomla maps this to Hq\Module\Hqphpmodule\Site\ for a site module. -->
+	<namespace path="src">Hq\Module\Hqphpmodule</namespace>
+
+	<!-- Runs on install/update: checks minimum versions and removes the pre-1.1 legacy entry file. -->
+	<scriptfile>script.php</scriptfile>
 
 	<files>
-		<filename module="mod_hqphpmodule">mod_hqphpmodule.php</filename>
+		<folder module="mod_hqphpmodule">services</folder>
+		<folder>src</folder>
 		<folder>tmpl</folder>
+		<folder>language</folder>
 		<filename>mod_hqphpmodule.xml</filename>
 	</files>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/mod_hqphpmodule.ini</language>
+		<language tag="en-GB">en-GB/mod_hqphpmodule.sys.ini</language>
+		<language tag="sv-SE">sv-SE/mod_hqphpmodule.ini</language>
+		<language tag="sv-SE">sv-SE/mod_hqphpmodule.sys.ini</language>
+	</languages>
 
 	<!-- Update servers -->
 	<updateservers>
@@ -24,63 +39,63 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-                <!--
-                    Lists the .php files in <site root>/ms-modules. The same
-                    directory is hard-wired in mod_hqphpmodule.php; keep them in sync.
-                -->
-                <field
-                    name="file"
-                    type="filelist"
-                    default=""
-                    label="Select a file"
-                    description="PHP file in the ms-modules directory below the site root whose output this module renders."
-                    directory="ms-modules"
-                    filter="\.php$"
-                    exclude=""
-                    stripext="false"
-                    hide_default="true"
-                />
+				<!--
+					Lists the .php files in <site root>/ms-modules. The same directory is
+					defined in src/Helper/HqphpmoduleHelper.php (DIRECTORY); keep them in sync.
+				-->
+				<field
+					name="file"
+					type="filelist"
+					default=""
+					label="MOD_HQPHPMODULE_FIELD_FILE_LABEL"
+					description="MOD_HQPHPMODULE_FIELD_FILE_DESC"
+					directory="ms-modules"
+					filter="\.php$"
+					exclude=""
+					stripext="false"
+					hide_default="true"
+				/>
 			</fieldset>
 			<fieldset name="advanced">
-                <field
-                    name="layout"
-                    type="modulelayout"
-                    label="JFIELD_ALT_LAYOUT_LABEL"
-                    class="form-select"
-                />
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					class="form-select"
+				/>
 
-                <field
-                    name="moduleclass_sfx"
-                    type="textarea"
-                    label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
-                    description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
-                    rows="3"
-                />
+				<field
+					name="moduleclass_sfx"
+					type="textarea"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+					rows="3"
+				/>
 
-                <field
-                    name="cache"
-                    type="list"
-                    label="COM_MODULES_FIELD_CACHING_LABEL"
-                    default="0"
-                >
-                    <option value="1">JGLOBAL_USE_GLOBAL</option>
-                    <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
-                </field>
+				<field
+					name="cache"
+					type="list"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					default="0"
+				>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
 
-                <field
-                    name="cache_time"
-                    type="number"
-                    label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
-                    default="0"
-                />
+				<field
+					name="cache_time"
+					type="number"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					default="0"
+				/>
 
-                <field
-                    name="cachemode"
-                    type="hidden"
-                    default="itemid"
-                >
-                    <option value="itemid"></option>
-                </field>                        
+				<field
+					name="cachemode"
+					type="hidden"
+					default="itemid"
+				>
+					<option value="itemid"></option>
+				</field>
 			</fieldset>
 		</fields>
 	</config>

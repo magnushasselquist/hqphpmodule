@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <updates>
     <update>
-        <name>HQPHPMODULE</name>
-        <description>HQPHPMODULE</description>
+        <name>HQ PHP Module</name>
+        <description>Renders the output of a PHP file from the ms-modules directory below the site root.</description>
         <element>mod_hqphpmodule</element>
         <type>module</type>
-        <version>1.0.2</version>
+        <version>1.1.0</version>
         <infourl title="HQPHPMODULE">https://github.com/magnushasselquist/hqphpmodule</infourl>
         <php_minimum>8.1</php_minimum>
         <downloads>
