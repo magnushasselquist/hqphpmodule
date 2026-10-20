@@ -35,6 +35,18 @@ The included PHP file runs inside the layout and sees the layout variables:
 `$module`, `$app`, `$input`, `$params` (a `Registry`), `$template`,
 `$filePath` and `$canEdit`.
 
+## Query string
+
+The optional **Query string** setting (`querystring`, e.g. `id=57893&key=abc`)
+is parsed with `parse_str()` into `$_GET` before the file is included, so a
+file written for `?id=...` can be driven from the module settings instead of
+the page URL. Parameters already present in the request are not overridden.
+Added in 1.1.1; it existed before 1.1.0 only as a local patch of
+`tmpl/default.php`, which the 1.1.0 rewrite dropped.
+
+The included file should `return` on errors, never `exit`: `exit` aborts the
+whole Joomla page, not just the module.
+
 ## Testing
 
 There is no automated test in the repository. The 1.1.0 conversion was

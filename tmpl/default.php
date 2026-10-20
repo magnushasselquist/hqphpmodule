@@ -35,6 +35,22 @@ if ($filePath === '') {
     return;
 }
 
+// Optional "querystring" parameter, e.g. "id=57893&key=abc". Parsed into
+// $_GET so a file written for ?id=... can be driven from the module settings.
+// Parameters already present in the request win, so the URL can still override.
+$queryString = trim((string) $params->get('querystring', ''));
+
+if ($queryString !== '') {
+    $queryVars = [];
+    parse_str($queryString, $queryVars);
+
+    foreach ($queryVars as $key => $value) {
+        if (!array_key_exists($key, $_GET)) {
+            $_GET[$key] = $value;
+        }
+    }
+}
+
 ob_start();
 
 try {

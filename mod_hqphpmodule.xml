@@ -7,7 +7,7 @@
 	<authorUrl>https://github.com/magnushasselquist</authorUrl>
 	<copyright>Copyright 2023 Magnus Hasselquist</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-	<version>1.1.0</version>
+	<version>1.1.1</version>
 	<description>MOD_HQPHPMODULE_XML_DESCRIPTION</description>
 
 	<!-- PSR-4 root for the classes in src/. Joomla maps this to Hq\Module\Hqphpmodule\Site\ for a site module. -->
@@ -54,6 +54,19 @@
 					exclude=""
 					stripext="false"
 					hide_default="true"
+				/>
+
+				<!--
+					Optional query string, e.g. "id=57893&amp;key=abc". Parsed into $_GET before
+					the file is included, without overriding parameters already in the request.
+				-->
+				<field
+					name="querystring"
+					type="text"
+					default=""
+					label="MOD_HQPHPMODULE_FIELD_QUERYSTRING_LABEL"
+					description="MOD_HQPHPMODULE_FIELD_QUERYSTRING_DESC"
+					filter="raw"
 				/>
 			</fieldset>
 			<fieldset name="advanced">
